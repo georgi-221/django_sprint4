@@ -20,7 +20,7 @@ from django.views.generic.edit import CreateView
 from django.conf import settings
 from django.conf.urls.static import static
 
-urlpatterns = ([
+urlpatterns = [
     path('admin/', admin.site.urls),
     path('pages/', include('pages.urls', namespace='pages')),
     path('', include('blog.urls', namespace='blog')),
@@ -34,7 +34,8 @@ urlpatterns = ([
             success_url=reverse_lazy('blog:index'),
         ),
         name='registration',
-        ),
-    ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT))
+    ),
+    ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
 handler404 = 'pages.views.page_not_found'
 handler500 = 'pages.views.custom_500'
