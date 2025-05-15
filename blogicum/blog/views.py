@@ -32,6 +32,7 @@ class BlogMixin:
 class BlogListView(BlogMixin, ListView):
     template_name = 'blog/index.html'
 
+
 class CategoryListView(BlogMixin, ListView):
     template_name = 'blog/category.html'
 
@@ -50,6 +51,7 @@ class CategoryListView(BlogMixin, ListView):
             slug=self.kwargs['slug']
         )
         return context
+
 
 class ProfileListView(BlogMixin, ListView):
     template_name = 'blog/profile.html'
@@ -117,9 +119,6 @@ class PostCreateView(LoginRequiredMixin, CreateView):
         return super().form_valid(form)
 
 
-
-
-
 class PostDetailView(DetailView):
     model = Post
     template_name = 'blog/detail.html'
@@ -161,6 +160,8 @@ class CommentCreateView(LoginRequiredMixin, CreateView):
             'blog:post_detail',
             kwargs={'pk': self.current_post.pk}
         )
+
+
 class CommentDelView(LoginRequiredMixin, DeleteView):
     model = Comment
     fields = ['text']
@@ -179,6 +180,7 @@ class CommentDelView(LoginRequiredMixin, DeleteView):
     def get_success_url(self):
         return reverse_lazy('blog:post_detail', args=[self.kwargs['pk']])
 
+
 class CommentUpView(LoginRequiredMixin, UpdateView):
     model = Comment
     fields = ['text']
@@ -196,9 +198,6 @@ class CommentUpView(LoginRequiredMixin, UpdateView):
 
     def get_success_url(self):
         return reverse_lazy('blog:post_detail', args=[self.kwargs['pk']])
-
-
-
 
 
 class PostDelView(LoginRequiredMixin, DeleteView):
