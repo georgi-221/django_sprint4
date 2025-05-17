@@ -1,31 +1,34 @@
 from django import forms
-from django.contrib.auth.models import User
-from .models import Post, Comment
+
+from .models import Comment, Post, User
 
 
-class ProfileChangeForm(forms.ModelForm):
-    class Meta:
-        model = User
-        fields = ['first_name', 'last_name', 'username', 'email']
+class PostForm(forms.ModelForm):
 
-
-class PostCreateForm(forms.ModelForm):
     class Meta:
         model = Post
-        fields = [
-            'title',
-            'text',
-            'pub_date',
-            'location',
-            'category',
-            'image'
-        ]
+        exclude = ('author',)
         widgets = {
-            'pub_date': forms.DateInput(attrs={'type': 'date'})
+            'text': forms.Textarea({'cols': '22', 'rows': '5'}),
+            'pub_date': forms.DateTimeInput(
+                format='%d %B %Y, %H:%M',
+                attrs={'type': 'datetime-local', 'class': 'form'},
+            )
         }
 
 
-class CommentsForm(forms.ModelForm):
+class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
         fields = ('text',)
+
+
+class UserCreateForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = (
+            'first_name',
+            'last_name',
+            'username',
+            'email'
+        )
