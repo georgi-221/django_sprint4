@@ -6,10 +6,7 @@ SECRET_KEY = 'django-insecure-i26*@7430poe@sqa2z-h1o13p7pqq7yn#jdy7ylsj_@&koptey
 
 DEBUG = True
 
-ALLOWED_HOSTS = [
-    'localhost',
-    '127.0.0.1',
-]
+ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
     'django_bootstrap5',

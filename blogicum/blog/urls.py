@@ -9,7 +9,7 @@ urlpatterns = [
         '',
         views.HomeListView.as_view(),
         name='index'
-    ),
+    ),find . -path "*/migrations/*.py" -not -name "__init__.py" -delete
     path(
         'edit_profile/',
         views.UserUpdateView.as_view(),
